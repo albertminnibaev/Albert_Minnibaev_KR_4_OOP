@@ -38,7 +38,7 @@ def user_interaction():
     filtered_vacancies_list.sort(key=lambda x: x.salary_to, reverse=True)
 
     # Вывод ползователю список вакансий
-    print_top_vacanciesfiltered_vacancies_list, top_n)
+    print_top_vacancies(filtered_vacancies_list, top_n)
 
     # Сохранение списка вакансий в файл vacancies.json
     json_saver = JSONSaver(filtered_vacancies_list, data_vacancies)
