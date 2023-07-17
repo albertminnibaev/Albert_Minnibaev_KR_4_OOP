@@ -1,5 +1,9 @@
 from classes.platform_vacancies_api import PlatformVacanciesApi
 import requests
+import os
+
+SuperJob_API_secret_key: str = os.getenv('SuperJob_API_secret_key')
+SuperJob_API_access_token: str = os.getenv('SuperJob_API_access_token')
 
 
 class SuperJobAPI(PlatformVacanciesApi):
@@ -17,8 +21,8 @@ class SuperJobAPI(PlatformVacanciesApi):
         }
         headers = {
             'ID': '2743',
-            'X-Api-App-Id': 'v3.r.14969054.17de73f28457f21470538f0ea911bca72606e6b8.2ef2df5ef10274581a1d19a930ad4cbc4a3a5e09',
-            'Authorization': 'Bearer r.000000010000001.example.v3.r.14969054.666f3ffef8663b6c046516386d5444b167365c3f.b4e86410b77f7572981dff564224b3bca4907015',
+            'X-Api-App-Id': SuperJob_API_secret_key,
+            'Authorization': f'Bearer r.000000010000001.example.{SuperJob_API_access_token}',
         }
         req = requests.get('https://api.superjob.ru/2.0/vacancies', params=params, headers=headers)
         data = req.json()
