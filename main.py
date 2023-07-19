@@ -1,4 +1,4 @@
-# Иьпрт классов и модулей
+# Импорт классов и модулей
 from classes.super_job_api import SuperJobAPI
 from classes.head_hunter_api import HeadHunterAPI
 from classes.vacancy_hh import VacancyHH
