@@ -7,15 +7,32 @@ class HeadHunterAPI(PlatformVacanciesApi):
     Класс для получения вакансий от платформы HeadHunter по API
     """
 
-    __api_hh = 'https://api.hh.ru/vacancies'
+    @property
+    def url(self):
+        return 'https://api.hh.ru/vacancies'
+
+    @property
+    def headers(self):
+        return {}
 
     def get_vacancies(self, name_vacancies, filter_words):
+        data = {}
         params = {
             'text': f'NAME:{name_vacancies}',  # Текст фильтра. В имени должно быть слово "python"
-            'area': 1,  # Поиск осуществляется по вакансиям города Москва
             'page': 1,  # Индекс страницы поиска на НН
-            'per_page': 100  # Кол-во вакансий на 1 странице
+            'per_page': 100,  # Кол-во вакансий на 1 странице
+            'offset': 0,
+            'limit': 1000,
         }
-        req = requests.get(self.__api_hh, params=params)
-        data = req.json()
+        try:
+            req = requests.get(self.url, params=params, headers=self.headers)
+        except requests.ConnectionError as e:
+            print("Ошибка подключения:", e)
+        except requests.Timeout as e:
+            print("Ошибка тайм-аута:", e)
+        except requests.RequestException as e:
+            print("Ошибка запроса:", e)
+        else:
+            data = req.json()
+            return data
         return data

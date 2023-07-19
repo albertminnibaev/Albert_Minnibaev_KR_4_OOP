@@ -1,5 +1,3 @@
-from pprint import pprint
-
 
 def generation_vacancies(vacancies, class_vacancies):
     """
@@ -28,12 +26,12 @@ def print_top_vacancies(vacancies_list, top_count):
         except ValueError:
             for i in range(len(vacancies_list)):
                 print(f"Вакансия №{i + 1}")
-                pprint(vacancies_list[i].vacancies_info)
+                print(vacancies_list[i])
                 print("\n")
         else:
             for i in range(int(top_count)):
                 print(f"Вакансия №{i + 1}")
-                pprint(vacancies_list[i].vacancies_info)
+                print(vacancies_list[i])
                 print("\n")
     else:
         print("Нет вакансий, соответствующих заданным критериям.")
